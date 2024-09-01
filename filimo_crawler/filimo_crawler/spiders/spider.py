@@ -5,7 +5,7 @@ class MySpider(scrapy.Spider):
 
     def start_requests(self):
         urls = [
-            'https://www.filimo.com/tag/1/old-foreign',
+            'https://www.filimo.com/movies/1/is_dubbed',
         ]
         for url in urls:
             yield scrapy.Request(url=url, callback=self.parse)
@@ -13,7 +13,7 @@ class MySpider(scrapy.Spider):
     def parse(self, response):
         link_list = []
         # استخراج لینک‌ها از تگ <a> با استفاده از xpath
-        for i in range(1,10):
+        for i in range(1,100):
             link= response.xpath(f'/html/body/div[1]/main/div/div/section/div/section/div/div/div[{i}]/a/@href').getall()
             link_list.extend(link)
         # ذخیره لینک‌ها به‌صورت فایل متنی
